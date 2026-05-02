@@ -36,7 +36,25 @@
     font-style: italic;
   }
 
-  /* Animaciones */
+  /* --- ANIMACIONES --- */
+  
+  /* Animación del Ticker (Barra infinita) */
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .animate-ticker {
+    display: flex;
+    width: fit-content;
+    animation: ticker 30s linear infinite;
+  }
+
+  .animate-ticker:hover {
+    animation-play-state: paused;
+  }
+
+  /* Animaciones de Entrada */
   @keyframes revealUp {
     0% { opacity: 0; transform: translateY(40px); }
     100% { opacity: 1; transform: translateY(0); }
@@ -84,8 +102,6 @@
 }
 
 /* --- Swiper: Estilos Corregidos para Build --- */
-/* Usamos CSS estándar para evitar errores de compilación con Tailwind v4 */
-
 .swiper-button-next, 
 .swiper-button-prev {
   background-color: #ffffff !important;
@@ -103,13 +119,12 @@
   color: #c5a059 !important;
 }
 
-.swiper-button-next:after, 
+.swiper-button-next:after,  
 .swiper-button-prev:after {
   font-size: 14px !important;
   font-weight: 900 !important;
 }
 
-/* Estilos de Paginación */
 .swiper-pagination-bullet {
   background-color: #ffffff !important;
   opacity: 0.3 !important;
