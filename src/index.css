@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-  /* PALETA DE ULTRA-LUJO: Menos saturación, más profundidad */
+  /* PALETA DE ULTRA-LUJO */
   --color-fresh-navy: #05070a; 
   --color-fresh-gold: #c5a059; 
   --color-fresh-gold-light: #e2c28a;
   --color-fresh-slate: #1a1a1a;
   --color-fresh-cream: #f8f7f2; 
   
-  /* TIPOGRAFÍA DUAL: El secreto del lujo */
+  /* TIPOGRAFÍA DUAL */
   --font-inter: "Inter", sans-serif;
-  --font-display: "Cormorant Garamond", serif; /* Fuente Serif para Títulos */
+  --font-display: "Cormorant Garamond", serif;
 
   /* Espaciado */
   --spacing-navbar-h: 160px;
@@ -22,7 +22,6 @@
   }
   
   body { 
-    /* Por defecto usamos la técnica Inter para legibilidad */
     font-family: var(--font-inter);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -32,13 +31,12 @@
     overflow-x: hidden;
   }
 
-  /* Títulos con look de revista de lujo */
   h1, h2, h3, .luxury-text {
     font-family: var(--font-display);
     font-style: italic;
   }
 
-  /* --- Animaciones Firplak-Style --- */
+  /* Animaciones */
   @keyframes revealUp {
     0% { opacity: 0; transform: translateY(40px); }
     100% { opacity: 1; transform: translateY(0); }
@@ -59,15 +57,13 @@
 }
 
 @layer components {
-  /* Navbar con Glassmorphism refinado */
   .glass-header {
     background: rgba(5, 7, 10, 0.85);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(197, 160, 89, 0.2); /* Borde oro sutil */
+    border-bottom: 1px solid rgba(197, 160, 89, 0.2);
   }
 
-  /* Botón Premium: Mezcla de Sans y Serif */
   .btn-premium {
     @apply relative overflow-hidden transition-all duration-500 uppercase tracking-[0.3em] font-black text-[10px] px-10 py-5 bg-fresh-navy text-white hover:text-fresh-navy;
     font-family: var(--font-inter);
@@ -82,29 +78,44 @@
     @apply w-full;
   }
 
-  /* Card Industrial-Boutique */
   .technical-card {
     @apply border border-slate-100 transition-all duration-700 hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)];
   }
 }
 
-/* --- Swiper: Navegación Minimalista --- */
-.swiper-button-next, .swiper-button-prev {
-  @apply bg-white !important;
+/* --- Swiper: Estilos Corregidos para Build --- */
+/* Usamos CSS estándar para evitar errores de compilación con Tailwind v4 */
+
+.swiper-button-next, 
+.swiper-button-prev {
+  background-color: #ffffff !important;
   width: 55px !important;
   height: 55px !important;
   border: 1px solid #f1f5f9 !important;
-  border-radius: 0% !important; /* Cuadrado = Arquitectónico */
-  color: var(--color-fresh-navy) !important;
+  border-radius: 0% !important;
+  color: #05070a !important;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-.swiper-button-next:hover, .swiper-button-prev:hover {
-  @apply bg-fresh-navy !important;
-  color: var(--color-fresh-gold) !important;
+.swiper-button-next:hover, 
+.swiper-button-prev:hover {
+  background-color: #05070a !important;
+  color: #c5a059 !important;
 }
 
-.swiper-button-next:after, .swiper-button-prev:after {
+.swiper-button-next:after, 
+.swiper-button-prev:after {
   font-size: 14px !important;
-  font-weight: 900;
+  font-weight: 900 !important;
+}
+
+/* Estilos de Paginación */
+.swiper-pagination-bullet {
+  background-color: #ffffff !important;
+  opacity: 0.3 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #c5a059 !important;
+  opacity: 1 !important;
 }
