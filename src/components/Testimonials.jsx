@@ -26,57 +26,75 @@ const reviews = [
 
 export default function Testimonials() {
   return (
-    <section className="py-24 bg-white border-t border-slate-100">
-      <div className="max-w-[1600px] mx-auto px-8">
+    <section className="py-20 md:py-32 bg-white border-t border-slate-100 overflow-hidden">
+      <div className="max-w-[1600px] mx-auto px-6 md:px-8">
         
-        {/* Encabezado minimalista al estilo de la referencia */}
-        <div className="flex justify-between items-baseline mb-16 border-b border-slate-100 pb-10">
-          <h2 className="text-2xl font-bold text-fresh-navy uppercase tracking-tight">
-            Experiencias Fresh
+        {/* Encabezado Editorial Refinado */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-baseline mb-12 md:mb-20 border-b border-slate-100 pb-8 md:pb-12">
+          <h2 className="font-display italic text-4xl md:text-5xl text-fresh-navy leading-none mb-4 md:mb-0">
+            Experiencias <span className="font-sans not-italic font-black uppercase text-xl md:text-2xl tracking-tighter">Fresh</span>
           </h2>
-          <span className="text-slate-400 text-[10px] uppercase tracking-[0.4em] font-medium">
-            Lo que dicen nuestros clientes
+          <span className="text-slate-400 text-[9px] md:text-[10px] uppercase tracking-[0.4em] font-bold">
+            Lo que dicen nuestros clientes • Casos de éxito
           </span>
         </div>
 
-        {/* Cuadrícula de 3 columnas - Igual a la referencia de productos */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-slate-100 border border-slate-100">
+        {/* Cuadrícula Estilo Galería Industrial */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-slate-200 border border-slate-200 shadow-2xl shadow-fresh-navy/5">
           {reviews.map((item) => (
-            <div key={item.id} className="bg-white p-12 flex flex-col justify-between hover:bg-slate-50 transition-colors duration-500">
-              
-              <div>
-                {/* Categoría sutil */}
-                <span className="text-fresh-gold text-[9px] font-black uppercase tracking-[0.3em] mb-8 block">
-                  {item.category}
-                </span>
+            <div 
+              key={item.id} 
+              className="bg-white p-8 md:p-14 flex flex-col justify-between group hover:bg-slate-50 transition-all duration-700 relative overflow-hidden"
+            >
+              {/* Comilla decorativa sutil (opcional para estilo) */}
+              <div className="absolute -top-4 -right-2 text-slate-50 text-8xl font-serif opacity-0 group-hover:opacity-100 transition-opacity duration-700 select-none">
+                "
+              </div>
+
+              <div className="relative z-10">
+                {/* Categoría con acento Gold */}
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="w-6 h-[1px] bg-fresh-gold"></div>
+                  <span className="text-fresh-gold text-[8px] md:text-[9px] font-black uppercase tracking-[0.3em]">
+                    {item.category}
+                  </span>
+                </div>
                 
-                {/* Texto del testimonio con tipografía clara */}
-                <p className="text-fresh-navy text-lg leading-relaxed font-light italic mb-12">
+                {/* Cuerpo del testimonio */}
+                <p className="text-fresh-navy text-xl md:text-2xl leading-relaxed font-display italic mb-12 group-hover:text-fresh-gold transition-colors duration-500">
                   "{item.quote}"
                 </p>
               </div>
 
-              {/* Firma estilo editorial */}
-              <div className="border-t border-slate-100 pt-8">
-                <h4 className="text-fresh-navy text-xs font-bold uppercase tracking-wider mb-1">
+              {/* Firma con jerarquía clara */}
+              <div className="border-t border-slate-100 pt-8 relative z-10">
+                <h4 className="text-fresh-navy text-[11px] md:text-xs font-black uppercase tracking-widest mb-1.5">
                   {item.author}
                 </h4>
-                <p className="text-slate-400 text-[10px] uppercase tracking-widest font-medium">
-                  {item.project}
-                </p>
+                <div className="flex items-center gap-2">
+                   <div className="w-1.5 h-1.5 rounded-full bg-fresh-gold/40"></div>
+                   <p className="text-slate-400 text-[9px] md:text-[10px] uppercase tracking-widest font-bold">
+                    {item.project}
+                  </p>
+                </div>
               </div>
 
             </div>
           ))}
         </div>
 
-        {/* Cierre con sentido comercial */}
-        <div className="mt-20 text-center">
-          <p className="text-slate-400 text-[11px] uppercase tracking-[0.2em] mb-4">
+        {/* Call to Action Final */}
+        <div className="mt-16 md:mt-24 text-center">
+          <p className="text-slate-400 text-[10px] md:text-[11px] uppercase tracking-[0.3em] mb-6">
             Únete a la exclusividad de Fresh
           </p>
-          <button className="text-fresh-navy font-black text-xs uppercase tracking-[0.3em] border-b-2 border-fresh-gold pb-1 hover:text-fresh-gold transition-colors">
-            Ver portafolio de proyectos
+          <button className="group relative inline-flex items-center gap-4 text-fresh-navy font-black text-[10px] md:text-xs uppercase tracking-[0.3em] transition-all">
+            <span className="border-b-2 border-fresh-gold pb-1 group-hover:pr-6 transition-all">
+              Ver portafolio de proyectos
+            </span>
+            <span className="text-fresh-gold text-lg group-hover:translate-x-2 transition-transform duration-300">
+              →
+            </span>
           </button>
         </div>
 
