@@ -175,3 +175,23 @@
   background: var(--color-fresh-gold);
   border-radius: 10px;
 }
+
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-ticker {
+  display: flex;
+  width: max-content;
+  animation: ticker 30s linear infinite;
+}
+
+/* Pausar al pasar el ratón (opcional, da un toque pro) */
+.animate-ticker:hover {
+  animation-play-state: paused;
+}

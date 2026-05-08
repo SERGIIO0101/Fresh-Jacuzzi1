@@ -1,15 +1,39 @@
 import React from 'react';
-// Importación de imágenes AVIF
+import { Link } from 'react-router-dom'; // Importante para la navegación
 import img1 from '../assets/image1.avif';
 import img2 from '../assets/image2.avif';
 import img3 from '../assets/image3.avif';
 import img4 from '../assets/image4.avif';
 
 const categories = [
-  { id: 1, name: "Hidromasajes", img: img1 },
-  { id: 2, name: "Bañeras", img: img2 },
-  { id: 3, name: "Cocinas", img: img4 },
-  { id: 4, name: "Zona de Labores", img: img3 },
+  { 
+    id: 1, 
+    name: "Hidromasajes", 
+    img: img1, 
+    path: "/hidromasajes/premium", // Ruta al catálogo premium
+    tag: "Elite Series"
+  },
+  { 
+    id: 2, 
+    name: "Bañeras", 
+    img: img2, 
+    path: "/hidromasajes/individual", // Ruta a Nixira/Americana
+    tag: "Personal Care"
+  },
+  { 
+    id: 3, 
+    name: "Cocinas", 
+    img: img4, 
+    path: "/cocinas", 
+    tag: "Kitchen Design"
+  },
+  { 
+    id: 4, 
+    name: "Zona de Labores", 
+    img: img3, 
+    path: "/labores", 
+    tag: "Laundry Room"
+  },
 ];
 
 export default function Categories() {
@@ -29,10 +53,11 @@ export default function Categories() {
           <div className="w-12 h-[3px] bg-fresh-gold mx-auto mt-6"></div>
         </div>
 
-        {/* Grid de 4 Categorías: 2 columnas en móvil, 4 en escritorio */}
+        {/* Grid de Categorías */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-6 md:gap-16">
           {categories.map((cat) => (
-            <div 
+            <Link 
+              to={cat.path} 
               key={cat.id} 
               className="flex flex-col items-center group cursor-pointer"
             >
@@ -46,11 +71,18 @@ export default function Categories() {
                   />
                 </div>
                 
-                {/* Indicador flotante al hacer hover */}
+                {/* Indicador flotante (Plus icon) */}
                 <div className="absolute -top-2 -right-2 w-8 h-8 bg-fresh-gold rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 shadow-lg border-2 border-white scale-50 group-hover:scale-100">
                    <svg className="w-4 h-4 text-fresh-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M12 4v16m8-8H4" />
                    </svg>
+                </div>
+
+                {/* Tag sutil que aparece en hover */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <span className="bg-fresh-navy/80 text-white text-[8px] font-black uppercase tracking-widest px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 backdrop-blur-sm">
+                        {cat.tag}
+                    </span>
                 </div>
               </div>
               
@@ -64,11 +96,11 @@ export default function Categories() {
                   <span className="text-slate-400 text-[9px] md:text-xs font-bold uppercase tracking-[0.2em] transition-all duration-500 group-hover:text-fresh-navy">
                     Ver colección
                   </span>
-                  {/* Línea animada: de centro hacia afuera */}
+                  {/* Línea animada */}
                   <div className="w-0 h-[1.5px] bg-fresh-gold mt-2 transition-all duration-500 group-hover:w-full"></div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
