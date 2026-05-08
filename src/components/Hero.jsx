@@ -2,7 +2,6 @@ import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation, EffectFade } from 'swiper/modules';
 
-// Estilos de Swiper
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
@@ -37,7 +36,11 @@ export default function Hero() {
   ];
 
   return (
-    <section className="w-full relative group bg-fresh-navy overflow-hidden">
+    /* CAMBIO CLAVE: 
+      - md:-mt-[116px]: Margen negativo para PC (ajusta este número según el alto total de tu Ticker+Navbar).
+      - relative z-0: Para asegurar que esté detrás del Navbar (z-100).
+    */
+    <section className="w-full relative group bg-fresh-navy overflow-hidden mt-0 md:-mt-[116px] p-0 border-0 z-0">
       <Swiper
         effect={'fade'}
         speed={1400}
@@ -51,14 +54,14 @@ export default function Hero() {
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
             <div 
-              className="relative w-full h-full bg-cover bg-center flex items-center justify-center scale-100 transition-transform duration-[5000ms]"
+              className="relative w-full h-full bg-cover bg-center flex items-center justify-center"
               style={{ backgroundImage: `url(${slide.image})` }}
             >
-              {/* Overlay: Gradiente hacia el navy de la marca */}
-              <div className="absolute inset-0 bg-gradient-to-b from-fresh-navy/60 via-transparent to-fresh-navy/95" />
+              {/* Overlay más oscuro arriba para mejorar legibilidad del Navbar */}
+              <div className="absolute inset-0 bg-gradient-to-b from-fresh-navy/90 via-transparent to-fresh-navy/95" />
 
-              {/* BANNER SUPERIOR DE INFO */}
-              <div className="absolute top-32 w-full py-3 px-6 md:px-20 flex justify-center md:justify-start items-center z-20">
+              {/* Ajuste de 'top' para que el contenido no quede tapado por el Navbar fijo */}
+              <div className="absolute top-44 md:top-64 w-full py-3 px-6 md:px-20 flex justify-center md:justify-start items-center z-20">
                 <div className="flex items-center gap-4 border-l-2 border-fresh-gold pl-4 bg-fresh-navy/20 backdrop-blur-md py-2 pr-6">
                   <span className="text-fresh-gold text-[10px] font-black uppercase tracking-[0.3em] animate-pulse">
                     Calidad Certificada
@@ -70,8 +73,8 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* CONTENIDO CENTRAL */}
-              <div className="relative z-10 text-center text-white px-6 mt-20">
+              {/* Padding superior aumentado para compensar el margen negativo */}
+              <div className="relative z-10 text-center text-white px-6 pt-32 md:pt-48">
                 <span className="text-xs md:text-sm font-bold text-fresh-gold tracking-[10px] md:tracking-[18px] uppercase block mb-6 drop-shadow-lg">
                   {slide.subtitle}
                 </span>
@@ -92,7 +95,7 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* ESPECIFICACIONES (Lado Izquierdo) */}
+              {/* Especificaciones e Iconos se mantienen igual */}
               <div className="absolute left-10 bottom-20 z-20 hidden lg:block">
                 <div className="space-y-4 border-l-2 border-fresh-gold pl-6">
                   {slide.specs.map((spec, i) => (
@@ -103,7 +106,6 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* ICONOS TÉCNICOS (Lado Derecho) */}
               <div className="absolute right-10 bottom-20 z-20 hidden lg:flex flex-col gap-8">
                 {slide.features.map((feat, i) => (
                   <div key={i} className="flex flex-col items-center group cursor-pointer">
@@ -121,8 +123,8 @@ export default function Hero() {
         ))}
       </Swiper>
 
-      {/* Ajustes de Swiper personalizados */}
       <style dangerouslySetInnerHTML={{ __html: `
+        .swiper-pagination { bottom: 40px !important; }
         .swiper-pagination-bullet { 
           background: #fff !important; 
           width: 30px !important; 
@@ -132,25 +134,11 @@ export default function Hero() {
           transition: all 0.4s ease; 
         }
         .swiper-pagination-bullet-active { 
-          background: #D4AF37 !important; /* Fresh Gold */
+          background: #D4AF37 !important; 
           opacity: 1; 
           width: 50px !important; 
         }
-        
-        .swiper-button-next, .swiper-button-prev { 
-          color: #D4AF37 !important; 
-          opacity: 0; 
-          transition: all 0.3s; 
-          transform: scale(0.6);
-        }
-        .group:hover .swiper-button-next, 
-        .group:hover .swiper-button-prev { 
-          opacity: 0.4; 
-        }
-        .swiper-button-next:hover, .swiper-button-prev:hover { 
-          opacity: 1 !important; 
-          transform: scale(0.8);
-        }
+        .swiper-button-next, .swiper-button-prev { color: #D4AF37 !important; transform: scale(0.6); }
       `}} />
     </section>
   );

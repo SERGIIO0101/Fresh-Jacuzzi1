@@ -1,104 +1,102 @@
 import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
-const reviews = [
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+const testimonials = [
   {
     id: 1,
-    quote: "La agilidad en la atención y la precisión técnica en la instalación superaron nuestras expectativas.",
-    author: "Jorge Enrique Castrillón",
-    project: "Residencia San Lucas",
-    category: "Ingeniería"
+    name: "Tatiana Villa Restrepo",
+    text: "Me ha parecido una marca excelente, hace muchos años tengo este lavaplatos, exactamente no recuerdo. Me encanta esa marca.",
+    avatar: "https://via.placeholder.com/150/1c2b39/ffffff?text=TV" // Aquí iría la foto real
   },
   {
     id: 2,
-    quote: "Un producto de alta calidad y fácil mantenimiento. El diseño se integra perfecto a la arquitectura.",
-    author: "Tatiana Villa Restrepo",
-    project: "Apartamento El Poblado",
-    category: "Diseño"
-  },
-  {
-    id: 3,
-    quote: "El acompañamiento en la elección de los hidromasajes fue clave para el éxito del proyecto.",
-    author: "Carlos Mario Arango",
-    project: "Casa de Campo Llanogrande",
-    category: "Bienestar"
+    name: "Juan Camilo Herrera",
+    text: "El hidromasaje que instalamos superó todas las expectativas. La asesoría técnica fue fundamental para que el proyecto quedara perfecto.",
+    avatar: "https://via.placeholder.com/150/1c2b39/ffffff?text=JH"
   }
 ];
 
 export default function Testimonials() {
   return (
-    <section className="py-20 md:py-32 bg-white border-t border-slate-100 overflow-hidden">
-      <div className="max-w-[1600px] mx-auto px-6 md:px-8">
+    <section className="py-20 bg-white font-montserrat overflow-hidden">
+      <div className="container mx-auto px-4 max-w-5xl">
         
-        {/* Encabezado Editorial Refinado */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-baseline mb-12 md:mb-20 border-b border-slate-100 pb-8 md:pb-12">
-          <h2 className="font-display italic text-4xl md:text-5xl text-fresh-navy leading-none mb-4 md:mb-0">
-            Experiencias <span className="font-sans not-italic font-black uppercase text-xl md:text-2xl tracking-tighter">Fresh</span>
-          </h2>
-          <span className="text-slate-400 text-[9px] md:text-[10px] uppercase tracking-[0.4em] font-bold">
-            Lo que dicen nuestros clientes • Casos de éxito
-          </span>
-        </div>
+        <h2 className="text-2xl md:text-3xl font-bold text-center text-black mb-12">
+          Conoce algunos testimonios de nuestros clientes
+        </h2>
 
-        {/* Cuadrícula Estilo Galería Industrial */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-slate-200 border border-slate-200 shadow-2xl shadow-fresh-navy/5">
-          {reviews.map((item) => (
-            <div 
-              key={item.id} 
-              className="bg-white p-8 md:p-14 flex flex-col justify-between group hover:bg-slate-50 transition-all duration-700 relative overflow-hidden"
-            >
-              {/* Comilla decorativa sutil (opcional para estilo) */}
-              <div className="absolute -top-4 -right-2 text-slate-50 text-8xl font-serif opacity-0 group-hover:opacity-100 transition-opacity duration-700 select-none">
-                "
-              </div>
+        <div className="relative px-12">
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            spaceBetween={30}
+            slidesPerView={1}
+            loop={true}
+            autoplay={{ delay: 5000 }}
+            navigation={{
+              nextEl: '.testimonial-next',
+              prevEl: '.testimonial-prev',
+            }}
+            pagination={{ clickable: true, el: '.testimonial-pagination' }}
+            className="pb-12"
+          >
+            {testimonials.map((t) => (
+              <SwiperSlide key={t.id}>
+                <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 py-4">
+                  
+                  {/* Avatar Circular */}
+                  <div className="w-32 h-32 md:w-40 md:h-40 rounded-full border-[3px] border-[#708d91] overflow-hidden flex-shrink-0 shadow-lg">
+                    <img src={t.avatar} alt={t.name} className="w-full h-full object-cover" />
+                  </div>
 
-              <div className="relative z-10">
-                {/* Categoría con acento Gold */}
-                <div className="flex items-center gap-3 mb-8">
-                  <div className="w-6 h-[1px] bg-fresh-gold"></div>
-                  <span className="text-fresh-gold text-[8px] md:text-[9px] font-black uppercase tracking-[0.3em]">
-                    {item.category}
-                  </span>
+                  {/* Texto del testimonio */}
+                  <div className="text-center md:text-left max-w-xl">
+                    <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-4 italic">
+                      {t.text}
+                    </p>
+                    <h4 className="text-sm md:text-base font-bold text-[#1c2b39]">
+                      {t.name}
+                    </h4>
+                  </div>
+
                 </div>
-                
-                {/* Cuerpo del testimonio */}
-                <p className="text-fresh-navy text-xl md:text-2xl leading-relaxed font-display italic mb-12 group-hover:text-fresh-gold transition-colors duration-500">
-                  "{item.quote}"
-                </p>
-              </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
 
-              {/* Firma con jerarquía clara */}
-              <div className="border-t border-slate-100 pt-8 relative z-10">
-                <h4 className="text-fresh-navy text-[11px] md:text-xs font-black uppercase tracking-widest mb-1.5">
-                  {item.author}
-                </h4>
-                <div className="flex items-center gap-2">
-                   <div className="w-1.5 h-1.5 rounded-full bg-fresh-gold/40"></div>
-                   <p className="text-slate-400 text-[9px] md:text-[10px] uppercase tracking-widest font-bold">
-                    {item.project}
-                  </p>
-                </div>
-              </div>
-
-            </div>
-          ))}
-        </div>
-
-        {/* Call to Action Final */}
-        <div className="mt-16 md:mt-24 text-center">
-          <p className="text-slate-400 text-[10px] md:text-[11px] uppercase tracking-[0.3em] mb-6">
-            Únete a la exclusividad de Fresh
-          </p>
-          <button className="group relative inline-flex items-center gap-4 text-fresh-navy font-black text-[10px] md:text-xs uppercase tracking-[0.3em] transition-all">
-            <span className="border-b-2 border-fresh-gold pb-1 group-hover:pr-6 transition-all">
-              Ver portafolio de proyectos
-            </span>
-            <span className="text-fresh-gold text-lg group-hover:translate-x-2 transition-transform duration-300">
-              →
-            </span>
+          {/* Botones de Navegación Personalizados (Flechas de la imagen) */}
+          <button className="testimonial-prev absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-gray-600 hover:bg-[#1c2b39] text-white flex items-center justify-center rounded-sm transition-colors">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+            </svg>
           </button>
-        </div>
+          
+          <button className="testimonial-next absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-gray-600 hover:bg-[#1c2b39] text-white flex items-center justify-center rounded-sm transition-colors">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
 
+          {/* Paginación (Puntos abajo) */}
+          <div className="testimonial-pagination flex justify-center gap-2 mt-4"></div>
+        </div>
       </div>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        .testimonial-pagination .swiper-pagination-bullet {
+          width: 8px;
+          height: 8px;
+          background: #ccc;
+          opacity: 1;
+        }
+        .testimonial-pagination .swiper-pagination-bullet-active {
+          background: #1c2b39 !important;
+        }
+      `}} />
     </section>
   );
 }
